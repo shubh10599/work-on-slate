@@ -22,6 +22,10 @@ const HOTKEYS = {
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
 const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
 
+const onchange = (value) => {
+    console.log(value)
+}
+
 const RichTextExample = () => {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
@@ -50,9 +54,9 @@ const RichTextExample = () => {
         placeholder="Enter some rich text…"
         spellCheck
         autoFocus
-        onChange={(value) => onChange(value)}
+        onChange={(value) => onchange(value)}
         onKeyDown={event => {
-            console.log(event.key)
+            // console.log(event.key)
           for (const hotkey in HOTKEYS) {
             if (isHotkey(hotkey, event)) {
               event.preventDefault()
@@ -66,9 +70,6 @@ const RichTextExample = () => {
   )
 }
 
-const onChange = ({value}) => {
-    console.log(value);
-}
 
 const toggleBlock = (editor, format) => {
   const isActive = isBlockActive(
